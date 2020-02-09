@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.google.gms.google-services' // firebase
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.vaibhavdhunde.android.practice.realtimelocation"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Kotlin Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_core_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_android_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:" +
+            "$coroutine_play_services_version" // for firebase
+
+    // Android Core Dependencies
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    implementation 'androidx.fragment:fragment-ktx:1.2.0-alpha02' // explicit declaration
+
+    // Material
+    implementation "com.google.android.material:material:$material_version"
+
+    // Testing Only Dependencies
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // ************ Firebase Dependencies *******************//
+    // Auth
+    implementation "com.google.firebase:firebase-auth:$firebaseauth_version"
+
+    // Firebase Auth UI
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
+
+    // Realtime Database
+    implementation "com.google.firebase:firebase-database:$firebase_database_version"
+//    implementation 'com.firebaseui:firebase-ui-database:4.3.2'
+
+    // Messaging
+    implementation "com.google.firebase:firebase-messaging:$firebase_messaing_version"
+    // ************ End Firebase Dependencies *******************//
+
+    // ************ Architecture Component Dependencies *******************//
+    // Lifecycle - ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version" //(java 8)
+    // ************ End Architecture Component Dependencies *******************//
+
+    // ************ Third Part Dependencies *******************//
+    // Timber - For logging
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Retrofit - For communicating with the servers to download / upload data efficiently
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+
+    // Material SearchBar
+//    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
+
+    // Paper - NoSQLite
+    implementation 'io.paperdb:paperdb:2.6'
+
+    // Dexter - For managing runtime permissions
+    implementation 'com.karumi:dexter:5.0.0'
+
+    // Kodein - DI
+    implementation 'org.kodein.di:kodein-di-generic-jvm:6.3.2'
+    implementation 'org.kodein.di:kodein-di-framework-android-x:6.3.2'
+
+    // Spots Progress Dialog
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+    // ************ End Third Part Dependencies *******************//
+
+    // Location
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    // Maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+}
